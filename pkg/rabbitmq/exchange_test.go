@@ -52,8 +52,8 @@ func TestExchange_Start(t *testing.T) {
 
 	t.Run("Should successfully start consuming for defined topics", func(t *testing.T) {
 		channel := new(channelMock)
-		channel.On("Consume", "OpenFaaS_Nasdaq_Billing", "", false, false, false, false, amqp.Table{}).Return(make(<-chan amqp.Delivery), nil)
-		channel.On("Consume", "OpenFaaS_Nasdaq_Transport", "", false, false, false, false, amqp.Table{}).Return(make(<-chan amqp.Delivery), nil)
+		channel.On("Consume", "Nasdaq_Billing", "", false, false, false, false, amqp.Table{}).Return(make(<-chan amqp.Delivery), nil)
+		channel.On("Consume", "Nasdaq_Transport", "", false, false, false, false, amqp.Table{}).Return(make(<-chan amqp.Delivery), nil)
 		channel.On("NotifyClose", mock.Anything).Return(make(chan *amqp.Error))
 
 		invoker := new(invokerMock)
@@ -69,7 +69,7 @@ func TestExchange_Start(t *testing.T) {
 
 	t.Run("Should return occurred error when starting consume failed", func(t *testing.T) {
 		channel := new(channelMock)
-		channel.On("Consume", "OpenFaaS_Nasdaq_Billing", "", false, false, false, false, amqp.Table{}).Return(make(<-chan amqp.Delivery), errors.New("expected"))
+		channel.On("Consume", "Nasdaq_Billing", "", false, false, false, false, amqp.Table{}).Return(make(<-chan amqp.Delivery), errors.New("expected"))
 		channel.On("NotifyClose", mock.Anything).Return(make(chan *amqp.Error))
 
 		invoker := new(invokerMock)

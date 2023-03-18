@@ -71,7 +71,7 @@ The topology is defined in the following format ([Example](./artifacts/example_t
 ```
 
 Queues will be configured accordingly to there exchange declaration in regards to `durable` & `auto-deleted`. Further the name of the queue
-will be generated based on the following schema: `OpenFaaS_{Exchange_Name}_${Topic}`.
+will be generated based on the following schema: `{Exchange_Name}_${Topic}`.
 
 ## Bug Reporting & Feature Requests
 

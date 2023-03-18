@@ -122,8 +122,7 @@ func declareTopology(con RabbitChannel, ex *types.Exchange) error {
 }
 
 // GenerateQueueName is responsible to generate a unique queue for the connector to use
-// It follows the naming schema OpenFaaS_[EXCHANGE_NAME]_[TOPIC]
+// It follows the naming schema [EXCHANGE_NAME]_[TOPIC]
 func GenerateQueueName(ex string, topic string) string {
-	const PreFix = "OpenFaaS"
-	return fmt.Sprintf("%s_%s_%s", PreFix, ex, topic)
+	return fmt.Sprintf("%s_%s", ex, topic)
 }
