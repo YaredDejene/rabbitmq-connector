@@ -179,7 +179,7 @@ func (c *Client) HasNamespaceSupport(ctx context.Context) (bool, error) {
 	case fasthttp.StatusUnauthorized:
 		return false, errors.New("OpenFaaS Credentials are invalid")
 	default:
-		log.Println(fmt.Sprintf("Received unexpected Status Code %d while fetching namespaces", resp.StatusCode()))
+		log.Printf("Received unexpected Status Code %d while fetching namespaces\n", resp.StatusCode())
 		return false, nil
 	}
 }
@@ -216,7 +216,7 @@ func (c *Client) GetNamespaces(ctx context.Context) ([]string, error) {
 	case fasthttp.StatusUnauthorized:
 		return nil, errors.New("OpenFaaS Credentials are invalid")
 	default:
-		log.Println(fmt.Sprintf("Received unexpected Status Code %d while fetching namespaces", resp.StatusCode()))
+		log.Printf("Received unexpected Status Code %d while fetching namespaces\n", resp.StatusCode())
 		return nil, nil
 	}
 }
