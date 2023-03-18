@@ -54,7 +54,7 @@ func (c *Controller) Invoke(topic string, invocation *types2.OpenFaaSInvocation)
 	functions := c.cache.GetCachedValues(topic)
 
 	for _, fn := range functions {
-		_, err := c.client.InvokeSync(context.Background(), fn, invocation)
+		_, err := c.client.InvokeAsync(context.Background(), fn, invocation)
 		if err != nil {
 			log.Printf("Invocation for topic %s failed due to err %s", topic, err)
 			return err
