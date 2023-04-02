@@ -7,6 +7,7 @@ package rabbitmq
 
 import (
 	"log"
+	"strings"
 	"sync"
 	"time"
 
@@ -98,6 +99,8 @@ func (e *Exchange) StartConsuming(topic string, deliveries <-chan amqp.Delivery)
 		if topic == delivery.RoutingKey {
 			// TODO: Maybe we want to send the deliveries into a general queue
 			// https://medium.com/justforfunc/two-ways-of-merging-n-channels-in-go-43c0b57cd1de
+			bodyStr := strings.Replace(string(delivery.Body), "\n", "", -1) ;
+			log.Printf("Received body %s", bodyStr)
 			go e.handleInvocation(topic, delivery)
 		} else {
 			log.Printf("Received message for topic %s that did not match subscribed topic %s will reject it", delivery.RoutingKey, topic)
